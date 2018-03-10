@@ -1,22 +1,25 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "addthreeints", "addthreeints\addthreeints.fsproj", "{F74BD76A-984A-41CD-8CB8-EC5A8527C466}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F74BD76A-984A-41CD-8CB8-EC5A8527C466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F74BD76A-984A-41CD-8CB8-EC5A8527C466}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F74BD76A-984A-41CD-8CB8-EC5A8527C466}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F74BD76A-984A-41CD-8CB8-EC5A8527C466}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-EndGlobal
+// Learn more about F# at http://fsharp.net
+// See the 'F# Tutorial' project for more help.
+open System
+[<EntryPoint>]
+let main argv = 
+    // if the arguments are 3
+    if Array.length argv = 3
+    then
+        // if all the strings can be parsed to valid integers
+        let validX, x = argv.[0] |> Int32.TryParse
+        let validY, y = argv.[1] |> Int32.TryParse
+        let validZ, z = argv.[2] |> Int32.TryParse
+        if(validX && validY && validZ) then
+            // add the integers together
+            // print out the result
+            printfn "%i" (x + y + z)
+            0 // return an integer exit code
+        else
+            // print ERROR: Invalid input format, input must be integers
+            printfn "ERROR: Invalid input format, input must be integers"
+            1 // return a failure exit code (non-0, thus error) 
+    else
+        // print ERROR: Invalid amount of arguments, expected 3
+        printfn "ERROR: Invalid amount of arguments, expected 3"
+        1// return a failure exit code (non-0, thus error)
